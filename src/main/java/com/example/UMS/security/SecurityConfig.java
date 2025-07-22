@@ -16,7 +16,6 @@ import com.example.UMS.repository.UserRepository;
 import com.example.UMS.security.jwt.JwtAuthFilter;
 
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.Customizer;
 
 @Configuration
 public class SecurityConfig {

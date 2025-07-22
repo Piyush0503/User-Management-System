@@ -21,12 +21,16 @@ public class JwtAuthFilter  extends OncePerRequestFilter {
      private final JwtUtil jwtUtil;
     private final UserDetailsService userDetailsService;
 
-    public JwtAuthFilter(JwtUtil jwtUtil, UserDetailsService userDetailsService) {
+    // JwtAuthFilter -> automatically detected and registered as a Spring bean.
+    public JwtAuthFilter(JwtUtil jwtUtil, UserDetailsService userDetailsService) { 
         this.jwtUtil = jwtUtil;
         this.userDetailsService = userDetailsService;
     }
 
     @Override
+    // doFilterInternal -> This method is called for each incoming HTTP request. It contains 
+    // the logic for extracting and validating the JWT, 
+    // and setting the authentication in the security context.
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
         final String authHeader = request.getHeader("Authorization");
