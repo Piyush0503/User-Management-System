@@ -18,13 +18,13 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public User registerUser(User user) {
-        if (userRepository.existsByEmail(user.getEmail())) {
-            throw new RuntimeException("Email already exists");
-        }
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        return userRepository.save(user);
-    }
+    // public User registerUser(User user) {
+    //     if (userRepository.existsByEmail(user.getEmail())) {
+    //         throw new RuntimeException("Email already exists");
+    //     }
+    //     user.setPassword(passwordEncoder.encode(user.getPassword()));
+    //     return userRepository.save(user);
+    // }
 
     public User getUser(Long id) {
         return userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
