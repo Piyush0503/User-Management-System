@@ -44,6 +44,8 @@ public class User implements UserDetails {
     @NotBlank(message = "Password is required")
     private String password;
 
+    private String storePassword;
+
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
@@ -63,11 +65,6 @@ public class User implements UserDetails {
 
     @Transient
     private Collection<? extends GrantedAuthority> authorities;
-
-    // @Override
-    // public Collection<? extends GrantedAuthority> getAuthorities() {
-    // return authorities;
-    // }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -162,6 +159,14 @@ public class User implements UserDetails {
 
     public void setRoles(Set<String> roles) {
         this.roles = roles;
+    }
+
+    public String getStorePassword() {
+        return storePassword;
+    }
+
+    public void setStorePassword(String storePassword) {
+        this.storePassword = storePassword;
     }
 
 }

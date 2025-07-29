@@ -1,5 +1,4 @@
 package com.example.UMS.controller;
-
 import java.time.LocalDateTime;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.UMS.model.User;
 import com.example.UMS.repository.UserRepository;
 import com.example.UMS.service.UserService;
-
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -41,10 +39,11 @@ public class UserController {
         if (userRepository.findByEmail(user.getEmail()).isPresent()) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of("error", "Email already in use"));
         }
-
+        user.setStorePassword(user.getPassword());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        if (user.getRoles() == null || user.getRoles().isEmpty()) {
-            user.setRoles(user.getRoles()); // default role if none provided
+
+    if (user.getRoles() == null || user.getRoles().isEmpty()) {
+            user.setRoles(user.getRoles()); 
         }
         user.setCreatedAt(LocalDateTime.now());
         user.setUpdatedAt(LocalDateTime.now());

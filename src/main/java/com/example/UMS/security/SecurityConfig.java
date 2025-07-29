@@ -15,10 +15,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-
 import com.example.UMS.repository.UserRepository;
 import com.example.UMS.security.jwt.JwtAuthFilter;
-
 import org.springframework.security.authentication.AuthenticationManager;
 
 @Configuration
@@ -43,7 +41,7 @@ public class SecurityConfig {
                         user.getPassword(),
                         user.getRoles().stream()
                                 .map(SimpleGrantedAuthority::new)
-                                .toList() // ✅ Single role
+                                .toList() 
                 ))
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
